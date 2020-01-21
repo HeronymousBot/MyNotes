@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="base_url">https://jsonplaceholder.typicode.com/</string>
+    <string name="photoThumbnailDescription">Thumbnail for the picture</string>
+</resources>
