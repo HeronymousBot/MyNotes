@@ -31,9 +31,11 @@ class PostsAdapter(private val posts : List<Post>, private val context : Context
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = posts[position]
+        holder?.let{
+            holder.titleTextView.text = post.title
+            holder.bodyTextView.text = post.body
+        }
 
-        holder.titleTextView.text = post.title
-        holder.bodyTextView.text = post.body
 
 
     }
