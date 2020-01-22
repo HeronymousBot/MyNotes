@@ -1,9 +1,6 @@
 package com.example.notes.Services
 
-import com.example.notes.Models.Photo
-import com.example.notes.Models.Post
-import com.example.notes.Models.Todo
-import com.example.notes.Models.User
+import com.example.notes.Models.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,7 +22,7 @@ interface Endpoint {
 
     //Album related
     @GET("albums")
-    fun getAlbums(@Query("userId") userId: Int?)
+    fun getAlbums(@Query("userId") userId: Int?) : Call<List<Album>>
 
     //Photo related
     @GET("photos")
