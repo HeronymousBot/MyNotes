@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notes.Models.Post
 import com.example.notes.Models.Todo
 import com.example.notes.R
-import kotlinx.android.synthetic.main.todo_item.view.*
+import kotlinx.android.synthetic.main.item_todo.view.*
 
 class TodosAdapter(private val todos : List<Todo>, private val context : Context) : RecyclerView.Adapter<TodosAdapter.ViewHolder>() {
 
@@ -19,7 +18,7 @@ class TodosAdapter(private val todos : List<Todo>, private val context : Context
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.todo_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_todo, parent, false)
         return ViewHolder(view)
     }
 

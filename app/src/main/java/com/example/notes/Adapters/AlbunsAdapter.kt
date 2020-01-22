@@ -1,8 +1,6 @@
 package com.example.notes.Adapters
 
 import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.notes.Models.Album
 import com.example.notes.R
-import kotlinx.android.synthetic.main.album_item.view.*
+import kotlinx.android.synthetic.main.item_album.view.*
 
 class AlbunsAdapter(private val albuns : List<Album>, private val context : Context) : Adapter<AlbunsAdapter.ViewHolder>() {
 
@@ -22,7 +20,7 @@ class AlbunsAdapter(private val albuns : List<Album>, private val context : Cont
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.album_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_album, parent, false)
         return ViewHolder(view)
     }
 

@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notes.Models.Album
 import com.example.notes.Models.Post
 import com.example.notes.R
-import kotlinx.android.synthetic.main.post_item.view.*
-import kotlinx.android.synthetic.main.todo_item.view.*
+import kotlinx.android.synthetic.main.item_post.view.*
 
 class PostsAdapter(private val posts : List<Post>, private val context : Context) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
 
@@ -21,7 +19,7 @@ class PostsAdapter(private val posts : List<Post>, private val context : Context
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.post_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
         return ViewHolder(view)
     }
 

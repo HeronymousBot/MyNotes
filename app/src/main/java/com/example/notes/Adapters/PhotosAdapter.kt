@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notes.Models.Photo
 import com.example.notes.R
 
-import kotlinx.android.synthetic.main.photo_item.view.*
+import kotlinx.android.synthetic.main.item_photo.view.*
 
 class PhotosAdapter(private val photos: List<Photo>, private val context: Context) :
     RecyclerView.Adapter<PhotosAdapter.ViewHolder>() {
@@ -20,7 +20,7 @@ class PhotosAdapter(private val photos: List<Photo>, private val context: Contex
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.photo_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_photo, parent, false)
         return ViewHolder(view)
     }
 
