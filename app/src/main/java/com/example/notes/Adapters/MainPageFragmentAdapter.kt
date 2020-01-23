@@ -40,6 +40,6 @@ class MainPageFragmentAdapter(private val context: Context, var userId : Int, fm
     }
 
     override fun getCount(): Int {
-        return 3
+        return totalTabs
     }
 }

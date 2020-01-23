@@ -16,12 +16,13 @@ import com.example.notes.R
 import com.example.notes.Services.Endpoint
 import com.example.notes.Services.RetrofitConfig
 import kotlinx.android.synthetic.main.fragment_posts.*
+import kotlinx.android.synthetic.main.fragment_todos.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class TodosFragment : Fragment() {
-    private var todos: List<Todo>? = null
+
 
     fun newInstance(userId: Int?): TodosFragment {
         val args = Bundle()
@@ -47,7 +48,7 @@ class TodosFragment : Fragment() {
     }
 
     fun setComponents(todos: List<Todo>) {
-        val todosRecyclerView = recyclerview_Posts
+        val todosRecyclerView = recyclerview_Todos
         todosRecyclerView.adapter = TodosAdapter(todos, context!!)
         val layoutManager = LinearLayoutManager(context)
         todosRecyclerView.layoutManager = layoutManager

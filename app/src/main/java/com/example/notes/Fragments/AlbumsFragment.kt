@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notes.Adapters.AlbunsAdapter
 import com.example.notes.Models.Album
 import com.example.notes.R
@@ -19,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AlbumsFragment : Fragment() {
-    private var albuns: List<Album>? = null
+
 
     fun newInstance(userId: Int?): AlbumsFragment {
         val args = Bundle()
@@ -45,8 +46,8 @@ class AlbumsFragment : Fragment() {
 
     fun setComponents(albums: List<Album>) {
         val albumRecyclerView = recyclerview_Albums
-        albumRecyclerView.adapter = AlbunsAdapter(albuns!!, context!!)
-        val layoutManager = GridLayoutManager(context, 2)
+        albumRecyclerView.adapter = AlbunsAdapter(albums, context!!)
+        val layoutManager = LinearLayoutManager(context)
         albumRecyclerView.layoutManager = layoutManager
 
 
