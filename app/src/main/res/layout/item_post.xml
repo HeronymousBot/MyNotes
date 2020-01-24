@@ -17,13 +17,17 @@
         <TextView
             android:id="@+id/textview_postTitle"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textview_postBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:gravity="center_vertical|start"
             android:textSize="16sp" />
 
     </LinearLayout>

@@ -5,12 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_MainActivity"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs_mainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_MainActivity"
         app:tabBackground="@color/colorPrimary"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/colorAccent"
@@ -22,7 +30,7 @@
         android:id="@+id/frameLayout_mainActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs_mainActivity" />

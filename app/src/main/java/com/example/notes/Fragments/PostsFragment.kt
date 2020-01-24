@@ -20,7 +20,8 @@ import retrofit2.Response
 
 class PostsFragment : Fragment() {
 
-    fun newInstance(userId : Int?) : PostsFragment{
+
+    fun newInstance(userId: Int?): PostsFragment {
         val args = Bundle()
         args.putSerializable("userId", userId)
         val fragment = PostsFragment()
@@ -34,6 +35,7 @@ class PostsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_posts, container, false)
+
         val userId = arguments!!.getSerializable("userId") as Int
         getPosts(userId)
 
@@ -42,11 +44,23 @@ class PostsFragment : Fragment() {
         return view
     }
 
-    fun setComponents(posts: List<Post>) {
+    fun setComponents(posts: List<Post>?) {
         val postsRecyclerView = recyclerview_Posts
-        postsRecyclerView.adapter = PostsAdapter(posts, context!!)
-        val layoutManager = LinearLayoutManager(context)
-        postsRecyclerView.layoutManager = layoutManager
+        val progressBar = progressBar_postsFragment
+        val emptyTextView = textview_emptyPosts
+
+
+
+        if (posts != null) {
+            if(progressBar != null) progressBar.visibility = View.GONE
+            if(postsRecyclerView != null)postsRecyclerView.visibility = View.VISIBLE
+            postsRecyclerView.adapter = PostsAdapter(posts, context!!)
+            val layoutManager = LinearLayoutManager(context)
+            postsRecyclerView.layoutManager = layoutManager
+        } else {
+            progressBar.visibility = View.GONE
+            emptyTextView.visibility = View.VISIBLE
+        }
 
 
     }
@@ -58,6 +72,7 @@ class PostsFragment : Fragment() {
 
         callback.enqueue(object : Callback<List<Post>> {
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                setComponents(null)
                 Toast.makeText(context, "Não conseguimos resgatar os posts.", Toast.LENGTH_LONG)
                     .show()
             }

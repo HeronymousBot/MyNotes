@@ -7,26 +7,43 @@
     android:background="@drawable/purple_background"
     tools:context=".Activities.LoginActivity">
 
+
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputlayout_login"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/EditTextHint"
-        app:hintEnabled="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:hint="User ID"
-        android:id="@+id/textInputLayout_Login"
+        app:hintEnabled="true"
+        android:textColorHint="#fff"
         app:layout_constraintBottom_toTopOf="@+id/button_entrarLogin"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toBottomOf="@+id/progressBar_loginActivity"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="#FFFFFF"
-            android:id="@+id/edittext_userIdLogin"
+            android:id="@+id/edittext_login"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+
+            android:inputType="number"
+            android:labelFor="@id/edittext_login"
+            android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar_loginActivity"
+        style="?android:attr/progressBarStyle"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputlayout_login"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_entrarLogin"

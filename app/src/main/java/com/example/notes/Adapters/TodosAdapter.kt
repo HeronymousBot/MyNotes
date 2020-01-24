@@ -9,7 +9,8 @@ import com.example.notes.Models.Todo
 import com.example.notes.R
 import kotlinx.android.synthetic.main.item_todo.view.*
 
-class TodosAdapter(private val todos : List<Todo>, private val context : Context) : RecyclerView.Adapter<TodosAdapter.ViewHolder>() {
+class TodosAdapter(private val todos: List<Todo>, private val context: Context) :
+    RecyclerView.Adapter<TodosAdapter.ViewHolder>() {
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,6 +31,10 @@ class TodosAdapter(private val todos : List<Todo>, private val context : Context
         val todo = todos[position]
 
         holder.titleTextView.text = todo.title
+        holder.titleTextView.setCheckMarkDrawable(
+            if (todo.completed!!) R.drawable.ic_done_green_36dp
+            else R.drawable.ic_highlight_off_black_24dp
+        )
 
 
     }

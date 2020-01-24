@@ -39,6 +39,7 @@ class TodosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater!!.inflate(R.layout.fragment_todos, container, false)
+
         val userId = arguments!!.getSerializable("userId") as Int
         getTodos(userId)
 
@@ -47,22 +48,35 @@ class TodosFragment : Fragment() {
         return view
     }
 
-    fun setComponents(todos: List<Todo>) {
+    fun setComponents(todos: List<Todo>?) {
         val todosRecyclerView = recyclerview_Todos
-        todosRecyclerView.adapter = TodosAdapter(todos, context!!)
-        val layoutManager = LinearLayoutManager(context)
-        todosRecyclerView.layoutManager = layoutManager
+        val progressBar = progressBar_todosFragment
+        val emptyTextView = textview_emptyTodos
+
+        if (todos != null) {
+            if (progressBar != null) progressBar.visibility = View.GONE
+            if (progressBar != null) todosRecyclerView.visibility = View.VISIBLE
+
+            todosRecyclerView.adapter = TodosAdapter(todos, context!!)
+            val layoutManager = LinearLayoutManager(context)
+            todosRecyclerView.layoutManager = layoutManager
+        } else {
+            progressBar.visibility = View.GONE
+            emptyTextView.visibility = View.VISIBLE
+
+        }
 
 
     }
 
-    fun getTodos(userId:Int?) {
+    fun getTodos(userId: Int?) {
         val retrofitClient = context?.let { RetrofitConfig.getRetrofitInstance(it) }
         val endpoint = retrofitClient!!.create(Endpoint::class.java)
         val callback = endpoint.getTodos(userId)
 
         callback.enqueue(object : Callback<List<Todo>> {
             override fun onFailure(call: Call<List<Todo>>, t: Throwable) {
+                setComponents(null)
                 Toast.makeText(context, "Não conseguimos resgatar os todos.", Toast.LENGTH_LONG)
                     .show()
             }

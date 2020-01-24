@@ -17,4 +17,16 @@ class SessionManager {
         editor.commit()
     }
 
+    fun saverUserId(userId:String, context : Context){
+        val sharedPrefs : SharedPreferences = context.getSharedPreferences(sharedPreferences, 0)
+        val editor = sharedPrefs.edit()
+        editor.putString("userId", userId)
+        editor.apply()
+    }
+
+    fun getUserId(context : Context) : Int?{
+        val sharedPrefs : SharedPreferences = context.getSharedPreferences(sharedPreferences, 0)
+        return sharedPrefs.getString("userId", "0")!!.toInt()
+    }
+
 }

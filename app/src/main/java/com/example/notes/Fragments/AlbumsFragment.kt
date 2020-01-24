@@ -1,6 +1,7 @@
 package com.example.notes.Fragments
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,8 @@ class AlbumsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater!!.inflate(R.layout.fragment_albums, container, false)
+
+
         val userId = arguments!!.getSerializable("userId") as Int
         getAlbuns(userId)
 
@@ -44,11 +47,26 @@ class AlbumsFragment : Fragment() {
         return view
     }
 
-    fun setComponents(albums: List<Album>) {
+    fun setComponents(albums: List<Album>?) {
+        val progressBar = progressBar_albumsFragment
         val albumRecyclerView = recyclerview_Albums
-        albumRecyclerView.adapter = AlbunsAdapter(albums, context!!)
-        val layoutManager = LinearLayoutManager(context)
-        albumRecyclerView.layoutManager = layoutManager
+        val emptyTextView = textview_emptyAlbums
+
+        if(albums != null){
+           if(progressBar != null) progressBar.visibility = View.GONE
+            if(emptyTextView!= null) emptyTextView.visibility = View.GONE
+
+            albumRecyclerView.visibility = View.VISIBLE
+            albumRecyclerView.adapter = AlbunsAdapter(albums, context!!)
+            val layoutManager = LinearLayoutManager(context)
+            albumRecyclerView.layoutManager = layoutManager
+        } else{
+           if(progressBar != null) progressBar.visibility = View.GONE
+            recyclerview_Albums.visibility = View.GONE
+            emptyTextView.visibility = View.VISIBLE
+
+        }
+
 
 
     }
@@ -60,6 +78,7 @@ class AlbumsFragment : Fragment() {
 
         callback.enqueue(object : Callback<List<Album>> {
             override fun onFailure(call: Call<List<Album>>, t: Throwable) {
+                setComponents(null)
                 Toast.makeText(context, "Não conseguimos resgatar os álbuns.", Toast.LENGTH_LONG)
                     .show()
             }

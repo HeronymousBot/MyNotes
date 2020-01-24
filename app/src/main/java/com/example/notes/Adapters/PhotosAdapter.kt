@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
+import coil.transform.CircleCropTransformation
 
 import com.example.notes.Models.Photo
 import com.example.notes.R
@@ -29,7 +31,12 @@ class PhotosAdapter(private val photos: List<Photo>, private val context: Contex
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val photos = photos[position]
+        val photo = photos[position]
+        holder.photoThumbnailImageView.load(photo.thumbnailUrl){
+            crossfade(true)
+            placeholder(R.drawable.custom_progressbar)
+            transformations(CircleCropTransformation())
+        }
 
 
     }

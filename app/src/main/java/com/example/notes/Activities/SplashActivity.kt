@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
 
             // close this activity
-            finish()
+            this.finish()
         }, SPLASH_TIME_OUT)
     }
 }

@@ -1,12 +1,14 @@
 package com.example.notes.Adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.example.notes.Activities.PhotosActivity
 import com.example.notes.Models.Album
 import com.example.notes.R
 import kotlinx.android.synthetic.main.item_album.view.*
@@ -16,7 +18,7 @@ class AlbunsAdapter(private val albuns : List<Album>, private val context : Cont
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView = itemView.textview_albumTitle
-        val albumIdTextView = itemView.textview_albumId
+        val  albumCardView = itemView.cardview_Album
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,7 +34,16 @@ class AlbunsAdapter(private val albuns : List<Album>, private val context : Cont
         val album = albuns[position]
 
         holder.titleTextView.text = album.title
-        holder.albumIdTextView.text = album.id.toString()
+
+
+        holder.albumCardView.setOnClickListener{
+            val photosIntent = Intent(context, PhotosActivity::class.java)
+
+            photosIntent.putExtra("albumId", album.id)
+            context.startActivity(photosIntent)
+
+        }
+
 
     }
 
